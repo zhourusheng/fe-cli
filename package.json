@@ -5,11 +5,12 @@
   "main": "index.js",
   "scripts": {
     "build": "babel src -d dist",
-    "watch": "npm run compile -- --watch"
+    "watch": "npm run build -- --watch"
   },
   "bin": {
     "yun-fe-cli": "./bin/cmd",
-    "yfe-cli": "./bin/cmd"
+    "yfe-cli": "./bin/cmd",
+    "yfe": "./bin/cmd"
   },
   "keywords": [
     "前端脚手架工具"
