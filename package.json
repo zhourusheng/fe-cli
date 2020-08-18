@@ -3,7 +3,10 @@
   "version": "0.0.1",
   "description": "前端脚手架打通上下游",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "build": "babel src -d dist",
+    "watch": "npm run compile -- --watch"
+  },
   "bin": {
     "yun-fe-cli": "./bin/cmd",
     "yfe-cli": "./bin/cmd"
@@ -14,11 +17,17 @@
   "author": "zhourusheng",
   "license": "ISC",
   "dependencies": {
+    "@babel/polyfill": "^7.10.4",
     "chalk": "^4.1.0",
     "commander": "^6.0.0",
     "download-git-repo": "^3.0.2",
     "inquirer": "^7.3.3",
     "log-symbols": "^4.0.0",
     "ora": "^5.0.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.10.5",
+    "@babel/core": "^7.11.1",
+    "@babel/preset-env": "^7.11.0"
   }
 }

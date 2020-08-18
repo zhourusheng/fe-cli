@@ -1,2 +1,2 @@
 
-console.log('test yfe-cli success!')
+console.log('安装babel 成功')
