@@ -1,10 +1,17 @@
 // 引入 commander
-import program, { action } from 'commander'
+import program from 'commander'
 
 import create from './create'
 
+interface actionType {
+  [key: string] : {
+    description: string
+    alias: string
+  }
+}
+
 // 命令行列表
-const actionMap = {
+const actionMap: actionType = {
   create: {
     description: '创建新项目',
     alias: 'c'
