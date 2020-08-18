@@ -3,15 +3,10 @@ import program from 'commander'
 
 import create from './create'
 
-interface actionType {
-  [key: string] : {
-    description: string
-    alias: string
-  }
-}
+import * as T from './type'
 
 // 命令行列表
-const actionMap: actionType = {
+const actionMap: T.actionType = {
   create: {
     description: '创建新项目',
     alias: 'c'
