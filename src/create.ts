@@ -1,6 +1,7 @@
 import inquirer from 'inquirer'
 import ora from 'ora'
 
+import tempalteList from './template'
 import { isFoldExist, errConsole } from './utils'
 import * as T from './type'
 
@@ -12,35 +13,31 @@ const create = async (projectName?: string) => {
   }
 
   // 文件名重复提示
-  // @ts-ignore
   if (isFoldExist(projectName)) {
     errConsole('the directory already exists, please rename it')
     return
   }
 
-  // inquirer.prompt 交互式命令行
-  const promptList: T.promptItem[] = [
-    {
-      type: 'list',
-      name: 'frame',
-      message: 'please choose this project template',
-      choices: ['vue', 'react']
-    },
-    {
-      type: 'input',
-      name: 'description',
-      message: 'please enter the project description'
-    },
-    {
-      type: 'input',
-      name: 'author',
-      message: 'please enter the author name'
-    }
-  ]
+  // 选择项目模板
+  const choices = tempalteList.map(item => item.key)
 
-  inquirer.prompt(promptList).then(answer => {
-    const { frame } = answer
+  const { type } = await inquirer.prompt({
+    type: 'list',
+    name: 'type',
+    message: 'please choose a project template',
+    choices
   })
+
+  const choosedTemplate = tempalteList.find(item => item.key === type)
+
+  const url = choosedTemplate?.url
+
+  const spinner = ora(' ⚡️ git clone repository...')
+  spinner.start()
+
+  setTimeout(() => {
+    spinner.succeed('success')
+  }, 3000)
 }
 
 export default create
