@@ -10,5 +10,4 @@ export const isFoldExist = (name: string) => {
 
 export const errConsole = (tip: string) => {
   console.log(symbol.error, chalk.red(tip))
-  return
 }

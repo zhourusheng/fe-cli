@@ -7,6 +7,7 @@ const create = async (projectName?: string) => {
   // 无文件名提示
   if (projectName === undefined) {
     errConsole('请输入项目名称(Please enter the project name.)')
+    return
   }
 
   // 文件名重复提示
@@ -15,6 +16,7 @@ const create = async (projectName?: string) => {
     errConsole(
       '文件夹已存在，请重新命名(The folder already exists, please rename it.)'
     )
+    return
   }
 
   // inquirer.prompt 交互式命令行
