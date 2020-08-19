@@ -1,4 +1,5 @@
 import inquirer from 'inquirer'
+import ora from 'ora'
 
 import { isFoldExist, errConsole } from './utils'
 import * as T from './type'
@@ -6,16 +7,14 @@ import * as T from './type'
 const create = async (projectName?: string) => {
   // 无文件名提示
   if (projectName === undefined) {
-    errConsole('请输入项目名称(Please enter the project name.)')
+    errConsole('please enter the project name')
     return
   }
 
   // 文件名重复提示
   // @ts-ignore
   if (isFoldExist(projectName)) {
-    errConsole(
-      '文件夹已存在，请重新命名(The folder already exists, please rename it.)'
-    )
+    errConsole('the directory already exists, please rename it')
     return
   }
 
@@ -24,14 +23,23 @@ const create = async (projectName?: string) => {
     {
       type: 'list',
       name: 'frame',
-      message: 'Please choose this project template',
+      message: 'please choose this project template',
       choices: ['vue', 'react']
+    },
+    {
+      type: 'input',
+      name: 'description',
+      message: 'please enter the project description'
+    },
+    {
+      type: 'input',
+      name: 'author',
+      message: 'please enter the author name'
     }
   ]
 
   inquirer.prompt(promptList).then(answer => {
     const { frame } = answer
-    console.log(frame)
   })
 }
 

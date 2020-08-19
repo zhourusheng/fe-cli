@@ -1,40 +1,22 @@
-// 引入 commander
-import program from 'commander'
+import commander from 'commander'
+import chalk from 'chalk'
 
 import create from './create'
-
 import * as T from './type'
 
-// 命令行列表
-const actionMap: T.actionType = {
-  create: {
-    description: '创建新项目',
-    alias: 'c'
-  }
-}
+const packageJson = require('../package.json')
 
-// 添加命令
-Object.keys(actionMap).forEach(action => {
-  program
-    .command(action)
-    .description(actionMap[action].description)
-    .alias(actionMap[action].alias)
-    .action(() => {
-      switch (action) {
-        case 'create':
-          create(...process.argv.slice(3))
-          break
-        default:
-          break
-      }
-    })
-})
+export const init = () => {
+  commander
+    .version(packageJson.version)
+    .description('A useful frontend CLI')
+    .usage(`${chalk.green('<command> [options]')}`)
 
-// --version 从 package.json 获取版本号, 并解析命令行参数
-const version = require('../package.json').version
-program.version(version).parse(process.argv)
+  commander
+    .command('create <project-name>')
+    .description('create a new project')
+    .option('-g, --git [path]', 'create a new repository?')
+    .action(name => create(name))
 
-// --help 当命令行后不带参数时，输出帮助信息
-if (!process.argv.slice(2).length) {
-  program.outputHelp()
+  commander.parse(process.argv)
 }

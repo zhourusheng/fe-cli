@@ -1,5 +1,5 @@
 {
-  "name": "fe-cli",
+  "name": "yfe-cli",
   "version": "0.0.1",
   "description": "前端脚手架打通上下游",
   "main": "index.js",
